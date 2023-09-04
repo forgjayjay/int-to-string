@@ -65,11 +65,7 @@ public class NumberConverter {
         int number = Integer.parseInt(numberStr);
         String[] words = {"Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
 
-        if (number >= 10 && number <= 19) {
-            return words[number - 10];
-        } else {
-            return "Invalid number";
-        }
+        return words[number - 10];
     }
 
     public String convertNumberToWords(String number) {
