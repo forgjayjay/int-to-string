@@ -1,4 +1,5 @@
 package sample;
+
 /**
  * Marking will be based upon producing a readable, well engineered solution rather than factors
  * such as speed of processing or other performance-based optimizations, which are less
@@ -9,7 +10,7 @@ package sample;
  */
 
 public class NumberConverter {
-    /**
+ /**
      * This class should be implemented to provide number conversion utilities.
      *
      * Objective:
@@ -28,106 +29,85 @@ public class NumberConverter {
      * @return the English word representation of the input number.
      */
 
-    final String ONE = "One";
-    final String TWO = "Two";
-    final String THREE = "Three";
-    final String FOUR = "Four";
-    final String FIVE = "Five";
-    final String SIX = "Six";
-    final String SEVEN = "Seven";
-    final String EIGHT = "Eight";
-    final String NINE = "Nine";
-    final String TEN = "Ten";
-    final String ELEVEN = "Eleven";
-    final String TWELVE = "Twelve";
-    final String THIRTEEN = "Thirteen";
-    final String TWENTY = "Twen";
-    final String THIRTY = "Thir";
-    final String FORTY = "For";
-    final String FIFTY = "Fif";
-    final String EIGHTY = "Eigh";
+    final String[] SINGLE_DIGIT_WORDS = {"Zero","One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"};
+    final String[] TEEN_WORDS = {"Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
+    final String[] TENS_WORDS = {" ", " ", "Twenty ", "Thirty ", "Forty ", "Fifty ", "Sixty ", "Seventy ", "Eighty ", "Ninety "};
 
-    private void appendToString(StringBuilder sb, String text){
-            sb.append(text);
+    private void appendWord(StringBuilder sb, String... words) {
+        for (String word : words) {
+            sb.append(word);
+        }
     }
-    
-    private char[] flipArray(char[] arr) {
+
+    private char[] reverseArray(char[] arr) {
         int length = arr.length;
-        char[] flipped = new char[length];
+        char[] reversed = new char[length];
 
         for (int i = 0; i < length; i++) {
-            flipped[i] = arr[length - 1 - i];
+            reversed[i] = arr[length - 1 - i];
         }
-        return flipped;
+        return reversed;
     }
-    
+
     private String handleTeens(String numberStr) {
         int number = Integer.parseInt(numberStr);
-        String[] words = {"Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
-
-        return words[number - 10];
+        return TEEN_WORDS[number - 10];
     }
 
     public String convertNumberToWords(String number) {
-        //If statement to handle the "-teens"
-        if(number.length() > 1 && number.charAt(number.toCharArray().length-2) == '1'){
-            String firstHalf = number.substring(0, number.toCharArray().length-2);
-            String secondHalf = number.substring(number.toCharArray().length-2);
-            int count = number.length()-firstHalf.length();
+        if (number.length() > 1 && number.charAt(number.toCharArray().length - 2) == '1') {
+            String firstHalf = number.substring(0, number.toCharArray().length - 2);
+            String secondHalf = number.substring(number.toCharArray().length - 2);
+            int count = number.length() - firstHalf.length();
             if (number.length() == 2) {
                 return handleTeens(number);
             } else {
-                return convertNumberToWords(firstHalf+"0".repeat(count)) + " " + handleTeens(secondHalf);
+                return convertNumberToWords(firstHalf + "0".repeat(count)) + " " + handleTeens(secondHalf);
             }
         }
 
         StringBuilder returnNumber = new StringBuilder();
+        String[] units = {"", "ty ", " Hundred ", " Thousand "};
+        char[] numbersArray = reverseArray(number.toCharArray());
 
-        String[] endStrings = {" ", "ty ", " Hundred ", " Thousand "};
-
-        char[] numbersArray = flipArray(number.toCharArray());
-        
-        for (int i = numbersArray.length-1; i >= 0; i--) {
-            int x = Character.getNumericValue(numbersArray[i]);
-            switch (x) {
+        for (int i = numbersArray.length - 1; i >= 0; i--) {
+            int digit = Character.getNumericValue(numbersArray[i]);
+            switch (digit) {
                 case 1:
-                        appendToString(returnNumber, ONE);
-                        break;
+                    appendWord(returnNumber, SINGLE_DIGIT_WORDS[1], units[i]);
+                    break;
                 case 2:
-                        if(i==1) appendToString(returnNumber, TWENTY);
-                        else appendToString(returnNumber, TWO);
-                        break;
+                    if (i == 1) appendWord(returnNumber, TENS_WORDS[2]);
+                    else appendWord(returnNumber, SINGLE_DIGIT_WORDS[2], units[i]);
+                    break;
                 case 3:
-                        if(i==1) appendToString(returnNumber, THIRTY);
-                        else appendToString(returnNumber, THREE);
-                        break;
+                    if (i == 1) appendWord(returnNumber, TENS_WORDS[3]);
+                    else appendWord(returnNumber, SINGLE_DIGIT_WORDS[3], units[i]);
+                    break;
                 case 4:
-                        if(i==1) appendToString(returnNumber, FORTY);
-                        else appendToString(returnNumber, FOUR);
-                        break;
+                    if (i == 1) appendWord(returnNumber, TENS_WORDS[4]);
+                    else appendWord(returnNumber, SINGLE_DIGIT_WORDS[4], units[i]);
+                    break;
                 case 5:
-                        if(i==1) appendToString(returnNumber, FIFTY);
-                        else appendToString(returnNumber, FIVE);
-                        break;
+                    if (i == 1) appendWord(returnNumber, TENS_WORDS[5]);
+                    else appendWord(returnNumber, SINGLE_DIGIT_WORDS[5], units[i]);
+                    break;
                 case 6:
-                        appendToString(returnNumber, SIX);
-                        break;
+                    appendWord(returnNumber, SINGLE_DIGIT_WORDS[6], units[i]);
+                    break;
                 case 7:
-                        appendToString(returnNumber, SEVEN);
-                        break;
+                    appendWord(returnNumber, SINGLE_DIGIT_WORDS[7], units[i]);
+                    break;
                 case 8:
-                        if(i==1) appendToString(returnNumber, EIGHTY);
-                        else appendToString(returnNumber, EIGHT);
-                        break;
+                    if (i == 1) appendWord(returnNumber, TENS_WORDS[8]);
+                    else appendWord(returnNumber, SINGLE_DIGIT_WORDS[8], units[i]);
+                    break;
                 case 9:
-                        appendToString(returnNumber, NINE);
-                            break;
+                    appendWord(returnNumber, SINGLE_DIGIT_WORDS[9], units[i]);
+                    break;
                 default:
                     break;
             }
-
-            if(x!=0) appendToString(returnNumber, endStrings[i]);
-
         }
 
         return returnNumber.toString().trim();
