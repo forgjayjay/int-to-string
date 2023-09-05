@@ -29,9 +29,9 @@ public class NumberConverter {
      * @return the English word representation of the input number.
      */
 
-    final String[] SINGLE_DIGIT_WORDS = {"Zero","One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"};
+    final String[] SINGLE_DIGIT_WORDS = {"","One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"};
     final String[] TEEN_WORDS = {"Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
-    final String[] TENS_WORDS = {" ", " ", "Twenty ", "Thirty ", "Forty ", "Fifty ", "Sixty ", "Seventy ", "Eighty ", "Ninety "};
+    final String[] TENS_WORDS = {"", "", "Twenty ", "Thirty ", "Forty ", "Fifty ", "Sixty ", "Seventy ", "Eighty ", "Ninety "};
 
     private void appendWord(StringBuilder sb, String... words) {
         for (String word : words) {
