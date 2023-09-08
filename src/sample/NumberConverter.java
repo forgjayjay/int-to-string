@@ -1,34 +1,6 @@
 package sample;
 
-/**
- * Marking will be based upon producing a readable, well engineered solution rather than factors
- * such as speed of processing or other performance-based optimizations, which are less
- * important.
- *
- *
- * Implement in single class.
- */
-
 public class NumberConverter {
- /**
-     * This class should be implemented to provide number conversion utilities.
-     *
-     * Objective:
-     *  Implement a method that converts a number in String format to its corresponding 
-     *  English word representation.
-     *
-     * Example:
-     *  Input: "25"
-     *  Output: "Twenty Five"
-     *
-     *  Input: "982"
-     *  Output: "Nine Hundred Eighty Two"
-     *
-     * Note: Consider numbers between 1 and 9999 for this exercise.
-     *
-     * @return the English word representation of the input number.
-     */
-
     final String[] SINGLE_DIGIT_WORDS = {"","One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"};
     final String[] TEEN_WORDS = {"Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
     final String[] TENS_WORDS = {"", "", "Twenty ", "Thirty ", "Forty ", "Fifty ", "Sixty ", "Seventy ", "Eighty ", "Ninety "};
